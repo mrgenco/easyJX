@@ -1,4 +1,4 @@
-# A crossplatform electron application for JSON and XML formatting
+# A crossplatform electron application for JSON & XML
 
 ## Project setup
 ```
