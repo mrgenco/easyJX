@@ -1,32 +1,64 @@
 <template>
-  <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
+  <v-app dark>
+    <div>
+      <v-toolbar dense class="titlebar" color="gray">
+        <v-toolbar-title>JXUtility</v-toolbar-title>
+
+        
+        <v-spacer></v-spacer>
+        <v-btn icon class="cliccabile puntatore" @click.stop="minimizza">
+          <v-icon>mdi-window-minimize</v-icon>
+        </v-btn>
+        <v-btn icon class="cliccabile puntatore" @click.stop="chiudi">
+          <v-icon>mdi-window-close</v-icon>
+        </v-btn>
+      </v-toolbar>
+      <v-content>
+        <HelloWorld />
+      </v-content>
     </div>
-    <router-view />
-  </div>
+  </v-app>
 </template>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
+<script>
+import HelloWorld from "./components/HelloWorld";
+import { ipcRenderer } from "electron";
+const remote = require("electron").remote;
+export default {
+  name: "App",
+
+  components: {
+    HelloWorld
+  },
+
+  data: () => ({
+    //
+  }),
+  methods: {
+    closeApplication() {
+      ipcRenderer.send("closeWindowInfo");
+    },
+    minimizza() {
+      const window = remote.getCurrentWindow();
+      window.minimize();
+    },
+    chiudi() {
+      const window = remote.getCurrentWindow();
+      window.close();
+    }
+  }
+};
+</script>
+<style scoped>
+.titlebar {
+  -webkit-user-select: none;
+  -webkit-app-region: drag;
+}
+.cliccabile {
+  -webkit-app-region: no-drag;
+}
+.puntatore {
+  cursor: pointer;
 }
 
-#nav {
-  padding: 30px;
-}
-
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-#nav a.router-link-exact-active {
-  color: #42b983;
-}
 </style>
