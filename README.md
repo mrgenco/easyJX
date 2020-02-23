@@ -1,4 +1,4 @@
-# electron-vue
+# A crossplatform electron application for JSON and XML formatting
 
 ## Project setup
 ```
