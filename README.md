@@ -1,6 +1,11 @@
-# A crossplatform electron application for JSON & XML
+## Crossplatform Desktop application for JSON & XML formatting
 
-## Project setup
+
+## Download and Install NodeJS
+
+[NodeJS](https://nodejs.org/en/download/)
+
+## Project setup 
 ```
 npm install
 ```
