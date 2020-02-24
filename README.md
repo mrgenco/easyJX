@@ -1,9 +1,8 @@
 ## Crossplatform Desktop application for JSON & XML formatting
 
-
 ## Download and Install NodeJS
 
-[NodeJS](https://nodejs.org/en/download/)
+[Click here for Official NodeJS website](https://nodejs.org/en/download/) 
 
 ## Project setup 
 ```
