@@ -14,21 +14,21 @@
         </v-btn>
       </v-toolbar>
       <v-content>
-        <HelloWorld />
+        <JXComponent />
       </v-content>
     </div>
   </v-app>
 </template>
 
 <script>
-import HelloWorld from "./components/HelloWorld";
+import JXComponent from "./components/JXComponent";
 import { ipcRenderer } from "electron";
 const remote = require("electron").remote;
 export default {
   name: "App",
 
   components: {
-    HelloWorld
+    JXComponent
   },
 
   data: () => ({

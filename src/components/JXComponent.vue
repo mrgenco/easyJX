@@ -5,20 +5,18 @@
         <v-btn
           class="ma-2"
           :loading="isLoading"
-          tile
-          outlined
+          rounded
           @click="beautify()"
           color="success"
         >Beautify</v-btn>
-        <v-btn class="ma-2" tile outlined @click="copy()" color="primary">Copy to Clipboard</v-btn>
+        <v-btn class="ma-2" rounded @click="copy()" color="primary">Copy to Clipboard</v-btn>
         <v-btn
           class="ma-2"
           v-if="text.length > 0"
-          tile
-          outlined
+          rounded
           @click="clear()"
           color="error"
-        >Clear</v-btn>
+        >Clear Textarea</v-btn>
 
         <v-spacer></v-spacer>
         <h4 class="error--text">{{message}}</h4>
@@ -36,7 +34,6 @@
       :color="color"
       class="red--text"
       solo
-      outlined
       placeholder="Paste JSON or XML content here"
     ></v-textarea>
   </v-container>
@@ -44,41 +41,51 @@
 
 <script>
 export default {
-  name: "HelloWorld",
+  name: "JXComponent",
 
   data: () => ({
     color: "success",
     text: "",
     json: "",
     isLoading: false,
-    isValidJSON: false,
     message: ""
   }),
   methods: {
     validate() {
       this.message = "";
+      if (this.text === "") {
+        this.message = "The input is empty!";
+        this.color = "success";
+        return false;
+      }
+
+      if (this.text.startsWith("<") && this.text.endsWith(">")) {
+        return true;
+      }
       try {
         this.json = JSON.parse(this.text);
-        this.isValidJSON = true;
+        return true;
       } catch (error) {
         this.message = "The input is not a valid JSON or XML!";
-        this.isValidJSON = false;
         this.color = "error";
+        return false;
       }
     },
     beautify() {
-      this.isLoading = true;
-      this.validate();
-      if (this.isValidJSON) {
-        try {
-          this.text = JSON.stringify(this.json, null, 4);
-          this.color = "success";
-        } catch (error) {
-          this.message = "Beautify error occured :(";
-          this.color = "error";
-        }
+      if (this.validate()) {
+        this.isLoading = true;
+        setTimeout(() => {
+          try {
+            this.text = JSON.stringify(this.json, null, 4);
+            this.color = "success";
+          } catch (error) {
+            this.message = "Beautify error occured :(";
+            this.color = "error";
+          }
+
+          this.isLoading = false;
+        }, 500);
       }
-      this.isLoading = false;
     },
     clear() {
       this.text = "";
