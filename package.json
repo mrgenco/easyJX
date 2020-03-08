@@ -14,7 +14,9 @@
   "main": "background.js",
   "dependencies": {
     "core-js": "^3.6.4",
+    "prismjs": "^1.19.0",
     "vue": "^2.6.11",
+    "vue-prism-component": "^1.1.1",
     "vue-router": "^3.1.5",
     "vuetify": "^2.2.11"
   },

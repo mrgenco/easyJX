@@ -2,7 +2,7 @@
   <v-app dark>
     <div>
       <v-toolbar dense class="titlebar" color="gray">
-        <v-toolbar-title>JXUtility</v-toolbar-title>
+        <v-toolbar-title>EasyJX</v-toolbar-title>
 
         
         <v-spacer></v-spacer>
